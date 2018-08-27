@@ -10,6 +10,7 @@ buildscript {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
         classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
+        classpath 'com.google.cloud.tools:appengine-gradle-plugin:+'
     }
 }
 
@@ -18,6 +19,7 @@ apply plugin: 'kotlin-spring'
 apply plugin: 'eclipse-wtp'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'com.google.cloud.tools.appengine'
 apply plugin: 'war'
 
 group = 'com.computas.cx-cloud-101.gcp'
@@ -51,7 +53,9 @@ ext {
 }
 
 dependencies {
-    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-web') {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
+    }
     compile('com.fasterxml.jackson.module:jackson-module-kotlin')
     compile('org.springframework.cloud:spring-cloud-gcp-starter-pubsub')
     compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
@@ -64,5 +68,12 @@ dependencyManagement {
     imports {
         mavenBom "org.springframework.cloud:spring-cloud-gcp-dependencies:${springCloudGcpVersion}"
         mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
+
+appengine {
+    deploy {
+        version = 'GCLOUD_CONFIG'
+        project = 'GCLOUD_CONFIG'
     }
 }
