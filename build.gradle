@@ -20,7 +20,10 @@ apply plugin: 'eclipse-wtp'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'war'
-apply plugin: 'com.google.cloud.tools.appengine'
+
+if (isAppengineTask()) {
+    apply plugin: 'com.google.cloud.tools.appengine'
+}
 
 group = 'com.computas.cx-cloud-101.gcp'
 version = '0.0.1-SNAPSHOT'
@@ -71,9 +74,15 @@ dependencyManagement {
     }
 }
 
-appengine {
-    deploy {
-        version = 'GCLOUD_CONFIG'
-        projectId = 'GCLOUD_CONFIG'
+if (isAppengineTask()) {
+    appengine {
+        deploy {
+            version = 'GCLOUD_CONFIG'
+            projectId = 'GCLOUD_CONFIG'
+        }
     }
+}
+
+boolean isAppengineTask() {
+    return getGradle().getStartParameter().getTaskRequests().toString().contains("appengine");
 }
