@@ -6,6 +6,9 @@ Exposes a REST API to publish speedtest logs.
 1. Setup App engine: `gcloud app create`
 1. Build and deploy: `gradle appengineDeploy`
 
+## Automatic build
+Follow this guide: https://cloud.google.com/cloud-build/docs/run-builds-on-github#installing_the_google_cloud_build_app
+
 ## Usage
 
 POST /speedtest
