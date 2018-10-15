@@ -1,6 +1,6 @@
 package com.computas.cxcloud101.gcp.speedtestapi.facade
 
-import com.computas.cxcloud101.gcp.speedtestapi.SpeedtestEvent
+import com.computas.cxcloud101.gcp.speedtestapi.model.SpeedtestEvent
 import com.google.gson.Gson
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.cloud.gcp.pubsub.core.PubSubTemplate
@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController
 class SpeedtestResource(val pubSub: PubSubTemplate,
                         @Value("\${speedtestTopic}") val speedtestTopic: String) {
 
+    val gson: Gson = Gson()
+
     @PostMapping(consumes = [MediaType.APPLICATION_JSON_UTF8_VALUE])
     fun postSpeedtest(@RequestBody event: SpeedtestEvent) : ResponseEntity<SpeedtestEvent> {
         return try {
@@ -28,5 +30,3 @@ class SpeedtestResource(val pubSub: PubSubTemplate,
 
     }
 }
-
-val gson: Gson = Gson()

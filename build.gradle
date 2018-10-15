@@ -51,7 +51,7 @@ configurations {
 }
 
 ext {
-    springCloudGcpVersion = '1.0.0.RELEASE'
+    springCloudGcpVersion = '1.1.0.M2'
     springCloudVersion = 'Finchley.SR1'
 }
 
@@ -61,6 +61,7 @@ dependencies {
     }
     compile('com.fasterxml.jackson.module:jackson-module-kotlin')
     compile('org.springframework.cloud:spring-cloud-gcp-starter-pubsub')
+    compile('org.springframework.cloud:spring-cloud-gcp-starter-data-datastore')
     compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     compile("org.jetbrains.kotlin:kotlin-reflect")
     providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
