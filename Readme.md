@@ -10,6 +10,7 @@ Exposes a REST API to publish speedtest logs.
     1. Click on create datastore and select Cloud Datastore 
 1. Setup App engine: `gcloud app create`
 1. Build and deploy: `gradle appengineDeploy`
+1. Deploy cron: `gcloud app deploy cron.yaml`
 
 ## Automatic build
 Follow this guide: https://cloud.google.com/cloud-build/docs/run-builds-on-github#installing_the_google_cloud_build_app

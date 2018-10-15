@@ -1,0 +1,4 @@
+cron:
+  - description: Trigger registered speedtest loggers
+    url: /trigger
+    schedule: every 10 minutes
