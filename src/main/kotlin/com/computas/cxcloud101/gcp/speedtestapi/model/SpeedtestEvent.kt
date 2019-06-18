@@ -21,19 +21,19 @@ data class Speeds(
 ) : Serializable
 
 data class Client(
-        val ip: String,
-        val lat: Number,
-        val lon: Number,
-        val isp: String,
-        val country: String
+        val ip: String?,
+        val lat: Number?,
+        val lon: Number?,
+        val isp: String?,
+        val country: String?
 ) : Serializable
 
 data class Server(
-        val host: String,
-        val lat: Number,
-        val lon: Number,
-        val country: String,
-        val distance: Number,
-        val ping: Number,
-        val id: String
+        val host: String?,
+        val lat: Number?,
+        val lon: Number?,
+        val country: String?,
+        val distance: Number?,
+        val ping: Number?,
+        val id: String?
 ) : Serializable
