@@ -29,7 +29,7 @@ class TriggerResource(val pubSub: PubSubTemplate,
                 .map { gson.toJson(it) }
                 .forEach { this.pubSub.publish(triggerTopic, it)}
 
-        return ResponseEntity(HttpStatus.OK);
+        return ResponseEntity(HttpStatus.OK)
     }
 
     @PostMapping(path = ["register"], consumes = [MediaType.APPLICATION_JSON_UTF8_VALUE])

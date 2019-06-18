@@ -7,13 +7,10 @@ Exposes a REST API to publish speedtest logs.
     1. `gcloud pubsub topic create speedtest-trigger`
 1. Create Datastore
     1. Goto [Datastore](https://console.cloud.google.com/datastore) in your project
-    1. Click on create datastore and select Cloud Datastore 
+    1. Click on create Datastore and select Datastore Mode 
 1. Setup App engine: `gcloud app create`
-1. Build and deploy: `gradle appengineDeploy`
+1. Build and deploy: `./gradlew appengineDeploy`
 1. Deploy cron: `gcloud app deploy cron.yaml`
-
-## Automatic build
-Follow this guide: https://cloud.google.com/cloud-build/docs/run-builds-on-github#installing_the_google_cloud_build_app
 
 ## Usage
 
@@ -23,10 +20,31 @@ Submits the `Speedtest event` to the `speedtest` topic.
 **Request payload** 
 ```
 {
-  user: <string>,
-  device: <integer>,
-  data: <string>,
-  timestamp: <long>
+   "user": "STRING",
+   "device": "NUMBER",
+   "timestamp": "NUMBER", // epoch time in ms
+   "data": {
+        "speeds": {
+            "download": "NUMBER",
+            "upload": "NUMBER"
+        },
+        "client": {
+            "ip": "STRING",
+            "lat": "NUMBER",
+            "lon": "NUMBER",
+            "isp": "STRING",
+            "country": "STRING" // (ISO 3166-1_alpha2)
+        },
+        "server": {
+            "host": "STRING",
+            "lat": "NUMBER",
+            "lon": "NUMBER",
+            "country": "STRING", // (ISO 3166-1_alpha2)
+            "distance": "NUMBER",
+            "ping": "NUMBER",
+            "id": "STRING"
+        }
+    }
 }
 ```
 

@@ -1,26 +1,26 @@
 package com.computas.cxcloud101.gcp.speedtestapi.model
 
-import com.fasterxml.jackson.annotation.JsonCreator
 import java.io.Serializable
 
-data class SpeedtestEvent @JsonCreator constructor(
+data class SpeedtestEvent(
         val user: String,
         val device: Int,
         val data: Result,
-        val timestamp: Long) : Serializable
+        val timestamp: Long
+) : Serializable
 
-data class Result @JsonCreator constructor(
+data class Result(
         val speeds: Speeds,
         val client: Client,
         val server: Server
 ) : Serializable
 
-data class Speeds @JsonCreator constructor(
+data class Speeds(
         val download: Number,
         val upload: Number
 ) : Serializable
 
-data class Client @JsonCreator constructor(
+data class Client(
         val ip: String,
         val lat: Number,
         val lon: Number,
@@ -28,7 +28,7 @@ data class Client @JsonCreator constructor(
         val country: String
 ) : Serializable
 
-data class Server @JsonCreator constructor(
+data class Server(
         val host: String,
         val lat: Number,
         val lon: Number,
